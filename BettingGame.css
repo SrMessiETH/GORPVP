@@ -1,0 +1,584 @@
+/* BettingGame.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+/* Root variables for cyberpunk theme */
+:root {
+  --neon-blue: #00f0ff;
+  --neon-pink: #ff2a6d;
+  --neon-purple: #d400ff;
+  --dark-bg: #0a0e1a;
+  --panel-bg: rgba(20, 30, 50, 0.8);
+  --glow-blue: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+  --glow-pink: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+  --glow-purple: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+/* Global reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, var(--dark-bg), #1c2526);
+  color: var(--neon-blue);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Scanline overlay effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.02) 2px,
+    rgba(255, 255, 255, 0.02) 3px
+  );
+  pointer-events: none;
+  z-index: 1000;
+  animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Main container */
+.cyberpunk-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  background: var(--panel-bg);
+  border: 2px solid var(--neon-blue);
+  border-radius: 10px;
+  box-shadow: var(--glow-blue);
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
+}
+
+/* Header */
+.cyberpunk-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cyberpunk-title {
+  font-family: var(--font-orbitron);
+  font-size: 5rem; /* Adjusted from text-6xl (3.75rem) for consistency */
+  background-image: linear-gradient(to right, #3B82F6, #8B5CF6, #10B981); /* from-blue-500, via-purple-500, to-green-500 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: var(--glow-violet);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: glitch 1.5s infinite; /* Assuming glitch animation is defined elsewhere */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Matches justify-center */
+  gap: 0.5rem; /* Space between icon and text */
+}
+.cyberpunk-title2 {
+  font-family: var(--font-orbitron);
+  font-size: 2em; /* Adjusted from text-6xl (3.75rem) for consistency */
+  background-image: linear-gradient(to right, #3B82F6, #8B5CF6, #10B981); /* from-blue-500, via-purple-500, to-green-500 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: var(--glow-violet);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: glitch 1.5s infinite; /* Assuming glitch animation is defined elsewhere */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Matches justify-center */
+  gap: 0.5rem; /* Space between icon and text */
+}
+.cyberpunk-title-icon {
+  width: 2.5rem; /* Matches font-size: 2.5rem for consistency */
+  height: 2.5rem;
+  fill: url(#title-gradient); /* Apply gradient to SVG fill */
+}
+
+/* Define gradient for SVG */
+svg.cyberpunk-title-icon {
+  /* Ensure SVG inherits parent dimensions */
+  display: inline-block;
+}
+
+/* Define gradient for use in SVG */
+:where(.cyberpunk-title) defs {
+  display: none; /* Hide defs unless used by SVG */
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, 0); }
+  80% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* Wallet controls */
+.cyberpunk-wallet-controls {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  flex-direction: column; /* Stack buttons vertically */
+  text-align: center; /* Center text content inside */
+}
+
+.cyberpunk-wallet-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  align-items: center; /* Vertical centering */
+  flex-direction: column; /* Stack buttons vertically */
+  text-align: center; /* Center text content inside */
+  gap: 4rem;
+}
+
+.cyberpunk-button-wallet {
+  display: flex;
+  justify-content: center;
+}
+
+.cyberpunk-button {
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.cyberpunk-button:hover:not(:disabled) {
+  background: var(--neon-blue);
+  color: var(--dark-bg);
+  box-shadow: var(--glow-blue);
+  transform: translateY(-2px);
+}
+
+.cyberpunk-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cyberpunk-button-phantom {
+  border-color: var(--neon-purple);
+  color: var(--neon-purple);
+}
+
+.cyberpunk-button-phantom:hover:not(:disabled) {
+  background: var(--neon-purple);
+  box-shadow: var(--glow-purple);
+}
+
+.cyberpunk-button-solflare {
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+}
+
+.cyberpunk-button-solflare:hover:not(:disabled) {
+  background: var(--neon-pink);
+  box-shadow: var(--glow-pink);
+}
+
+.cyberpunk-button-disconnect {
+  border-color: #ff4d4d;
+  color: #ff4d4d;
+}
+
+.cyberpunk-button-disconnect:hover:not(:disabled) {
+  background: #ff4d4d;
+  box-shadow: 0 0 10px #ff4d4d;
+  color: var(--dark-bg);
+}
+
+.cyberpunk-button-retry {
+  border-color: #00ff88;
+  color: #00ff88;
+}
+
+.cyberpunk-button-retry:hover:not(:disabled) {
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+  color: var(--dark-bg);
+}
+
+/* Round info panel */
+.cyberpunk-round-info {
+  background: var(--panel-bg);
+  border: 1px solid var(--neon-blue);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--glow-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyberpunk-data-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.cyberpunk-data-item {
+  font-size: 1.2rem;
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.cyberpunk-error-panel {
+  text-align: center;
+}
+
+.cyberpunk-error-text {
+  color: #ff4d4d;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px #ff4d4d;
+}
+
+/* Betting interface */
+.cyberpunk-betting-interface {
+  background: var(--panel-bg);
+  border: 1px solid var(--neon-pink);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--glow-pink);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cyberpunk-input {
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.cyberpunk-input:focus {
+  border-color: var(--neon-pink);
+  box-shadow: var(--glow-pink);
+}
+
+.cyberpunk-input::placeholder {
+  color: rgba(0, 240, 255, 0.5);
+}
+
+.cyberpunk-prediction-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cyberpunk-button-up {
+  border-color: #00ff88;
+  color: #00ff88;
+}
+
+.cyberpunk-button-up:hover:not(:disabled), .cyberpunk-button-up.selected {
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+  color: var(--dark-bg);
+}
+
+.cyberpunk-button-down {
+  border-color: #ff4d4d;
+  color: #ff4d4d;
+}
+
+.cyberpunk-button-down:hover:not(:disabled), .cyberpunk-button-down.selected {
+  background: #ff4d4d;
+  box-shadow: 0 0 10px #ff4d4d;
+  color: var(--dark-bg);
+}
+
+.cyberpunk-button-place-bet {
+  border-color: var(--neon-purple);
+  color: var(--neon-purple);
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+}
+
+.cyberpunk-button-place-bet:hover:not(:disabled) {
+  background: var(--neon-purple);
+  box-shadow: var(--glow-purple);
+  color: var(--dark-bg);
+}
+
+/* Status message */
+.cyberpunk-status {
+  text-align: center;
+  color: #ff4d4d;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px #ff4d4d;
+  margin-bottom: 2rem;
+}
+
+/* Past rounds section */
+.cyberpunk-past-rounds {
+  background: var(--panel-bg);
+  border: 1px solid var(--neon-purple);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: var(--glow-purple);
+}
+
+.cyberpunk-subtitle {
+  font-family: var(--font-orbitron);
+  font-size: 1.8rem;
+  color: var(--neon-purple);
+  text-shadow: var(--glow-purple);
+  margin-bottom: 1rem;
+}
+
+.cyberpunk-rounds-list {
+  list-style: none;
+}
+
+.cyberpunk-round-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  font-size: 1rem;
+  color: var(--neon-blue);
+}
+
+.cyberpunk-round-id, .cyberpunk-round-price, .cyberpunk-round-outcome, .cyberpunk-round-pool, .cyberpunk-round-status {
+  flex: 1;
+  min-width: 120px;
+}
+
+.cyberpunk-no-data {
+  text-align: center;
+  color: var(--neon-blue);
+  font-size: 1.2rem;
+}
+
+.custom-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 600px; /* Matches the inline style for consistency */
+  background: rgba(10, 10, 20, 0.98);
+  border: 1px solid #00ffcc;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 204, 0.3);
+  padding: 40px 30px; /* Matches the inline style for consistency */
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+.wallet-adapter-modal-button img {
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 4px !important;
+  flex-shrink: 0 !important;
+}
+/* Wallet controls */
+.cyberpunk-wallet-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.cyberpunk-wallet-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Custom Modal Styles */
+.custom-modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600px;
+  background: rgba(10, 10, 20, 0.98);
+  border: 1px solid #00ffcc;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 204, 0.3);
+  padding: 40px 30px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  z-index: 1001;
+}
+
+.wallet-adapter-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 2px solid #ff4d4d;
+  border-radius: 50%;
+  color: #ff4d4d;
+  font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1002;
+}
+
+.wallet-adapter-modal-close:hover {
+  background: #ff4d4d;
+  color: #ffffff;
+  box-shadow: 0 0 10px #ff4d4d;
+  transform: scale(1.1);
+}
+
+.wallet-adapter-modal-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.wallet-adapter-modal-button {
+  width: 100%;
+  height: 60px;
+  min-height: 60px;
+  padding: 16px 20px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(106, 0, 244, 0.1), rgba(161, 0, 242, 0.1));
+  border: 1px solid #00ffcc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0, 255, 204, 0.15);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  backdrop-filter: blur(10px);
+}
+
+.wallet-adapter-modal-button:hover {
+  background: linear-gradient(135deg, rgba(106, 0, 244, 0.2), rgba(161, 0, 242, 0.2));
+  box-shadow: 0 4px 16px rgba(0, 255, 204, 0.3), 0 0 0 1px rgba(0, 255, 204, 0.5);
+  transform: translateY(-1px);
+}
+
+.wallet-adapter-modal-button img {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Connected Wallet Button Icon Styling */
+.wallet-adapter-button .wallet-adapter-button-start-icon img {
+  width: 24px !important; /* Enforce uniform width */
+  height: 24px !important; /* Enforce uniform height */
+  object-fit: cover; /* Maintain aspect ratio without distortion */
+  border-radius: 4px !important; /* Match modal icon styling */
+    justify-content: center; /* Center buttons horizontally */
+
+  flex-shrink: 0 !important; /* Prevent shrinking */
+}
+
+/* Target the connected wallet button and its content */
+.wallet-adapter-button.wallet-adapter-button-trigger {
+  display: flex;
+  flex-direction: column; /* Stack icon, address, and actions vertically */
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Center text within the button */
+  padding: 8px 16px; /* Match disconnect button padding */
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px; /* Match disconnect button font size */
+  width: 150px; /* Match disconnect button width */
+  height: auto; /* Allow dynamic height based on content */
+  white-space: normal; /* Allow text to wrap if needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cyberpunk-container {
+    padding: 1rem;
+  }
+
+  .cyberpunk-title {
+    font-size: 2rem;
+  }
+
+  .cyberpunk-data-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .cyberpunk-betting-interface {
+    padding: 1rem;
+  }
+
+  .cyberpunk-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .cyberpunk-round-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
