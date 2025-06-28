@@ -10,7 +10,7 @@ $GOR PVP is a decentralized betting game built on the Solana blockchain, integra
 - **Wallet integration** with Phantom, Solflare, and Backpack via Solana Wallet Adapter.
 - **Cyberpunk-themed UI** with a responsive, immersive design.
 
-Each round lasts 300 seconds, with a 30-second betting cutoff. Players can bet between 0.01 and 100 $GOR per transaction, with a maximum of 100 $GOR per wallet per round.
+Each round lasts 300 seconds, with a 30-second betting cutoff. Players can bet between 0.01 and 100 $GOR per transaction.
 
 ## Gorbagana Integration
 
