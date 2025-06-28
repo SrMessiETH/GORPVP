@@ -66,6 +66,8 @@ yarn dev
 
 The app will be available at http://localhost:3000.
 
+You are going to need the index.js back-end server on a firebase function or node/pm2 (making the needed changes) that runs every two minutes.
+
 Connect Wallet:
 Open the app in a browser with Phantom, Solflare, or Backpack installed.
 
