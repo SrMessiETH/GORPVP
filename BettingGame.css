@@ -160,6 +160,46 @@ svg.cyberpunk-title-icon {
   justify-content: center;
 }
 
+/* Target the dropdown list and its items */
+.wallet-adapter-dropdown-list .wallet-adapter-dropdown-item {
+  cursor: pointer !important;
+}
+
+/* Target any button or clickable element inside the dropdown */
+.wallet-adapter-dropdown-list li,
+.wallet-adapter-dropdown-list button {
+  cursor: pointer !important;
+}
+
+/* Broader selector for any wallet adapter button */
+[class*="wallet-adapter"] button,
+[class*="wallet-adapter"] li {
+  cursor: pointer !important;
+}
+
+/* Specific fallback for dropdown items */
+.wallet-adapter-dropdown-item {
+  cursor: pointer !important;
+  font-family: "Orbitron", sans-serif !important;
+  color: #00ffcc !important;
+  padding: 8px 16px !important;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
+}
+
+.wallet-adapter-dropdown-item:hover {
+  background: rgba(0, 255, 204, 0.1) !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 0 8px rgba(0, 255, 204, 0.5) !important;
+}
+
+/* Style the dropdown list container */
+.wallet-adapter-dropdown-list {
+  background: rgba(10, 10, 20, 0.98) !important;
+  border: 1px solid #00ffcc !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 255, 204, 0.3) !important;
+  padding: 8px 0 !important;
+}
 .cyberpunk-button {
   background: transparent;
   border: 2px solid var(--neon-blue);
@@ -173,6 +213,7 @@ svg.cyberpunk-title-icon {
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .cyberpunk-button:hover:not(:disabled) {
@@ -241,18 +282,6 @@ svg.cyberpunk-title-icon {
   overflow: hidden;
 }
 
-.cyberpunk-data-panel {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.cyberpunk-data-item {
-  font-size: 1.2rem;
-  color: var(--neon-blue);
-  text-shadow: 0 0 5px var(--neon-blue);
-  animation: pulse 2s infinite;
-}
 
 @keyframes pulse {
   0% { opacity: 1; }
@@ -380,7 +409,7 @@ svg.cyberpunk-title-icon {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 0.75rem;
+  padding: 0.15rem;
   border-bottom: 1px solid rgba(0, 240, 255, 0.2);
   font-size: 1rem;
   color: var(--neon-blue);
@@ -388,7 +417,7 @@ svg.cyberpunk-title-icon {
 
 .cyberpunk-round-id, .cyberpunk-round-price, .cyberpunk-round-outcome, .cyberpunk-round-pool, .cyberpunk-round-status {
   flex: 1;
-  min-width: 120px;
+  min-width: 150px;
 }
 
 .cyberpunk-no-data {
@@ -534,7 +563,6 @@ svg.cyberpunk-title-icon {
   object-fit: cover; /* Maintain aspect ratio without distortion */
   border-radius: 4px !important; /* Match modal icon styling */
     justify-content: center; /* Center buttons horizontally */
-
   flex-shrink: 0 !important; /* Prevent shrinking */
 }
 
@@ -554,6 +582,297 @@ svg.cyberpunk-title-icon {
   text-overflow: ellipsis;
 }
 
+.rules-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rules-modal {
+  background: rgba(10, 10, 20, 0.98);
+  border: 1px solid #00ffcc;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 255, 204, 0.3);
+  padding: 32px 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  backdrop-filter: blur(20px);
+}
+
+.rules-modal-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #00ffcc;
+  text-align: center;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rules-modal-content {
+  font-family: 'Orbitron', sans-serif;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.rules-modal-content h3 {
+  color: #00ffcc;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.rules-modal-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.rules-modal-content ul ul {
+  list-style-type: circle;
+  margin-left: 20px;
+}
+
+.rules-modal-content li {
+  margin-bottom: 10px;
+}
+
+.rules-modal-close {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #00ffcc, #ff00ff);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.rules-modal-close:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+  transform: scale(1.05);
+}
+
+.cyberpunk-button-rules {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #00ffcc, #ff00ff);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+
+.cyberpunk-button-rules:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+  transform: scale(1.05);
+}
+
+/* Round Info Section */
+.round-info-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.round-info-grid-container {
+  background: rgba(10, 10, 20, 0.95);
+  border: 2px solid #00ffcc;
+  border-radius: 16px;
+  box-shadow: 0 12px 48px rgba(0, 255, 204, 0.25), 0 0 24px rgba(0, 255, 204, 0.15);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  padding: 32px;
+  animation: fadeIn 0.6s ease-in;
+}
+
+.round-info-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(0, 255, 204, 0.4);
+  margin-bottom: 24px;
+}
+
+.round-info-grid-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #00ffcc;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px rgba(0, 255, 204, 0.5);
+}
+
+.round-info-grid-time {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ff00ff;
+  text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+}
+
+.round-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  position: relative;
+}
+
+.round-info-grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.round-info-grid-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 16px rgba(0, 255, 204, 0.4);
+}
+
+.round-info-grid-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+.round-info-grid-value {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00ffcc;
+  text-shadow: 0 0 4px rgba(0, 255, 204, 0.3);
+}
+
+.round-info-error-container {
+  background: rgba(10, 10, 20, 0.95);
+  border: 2px solid #ff4d4d;
+  border-radius: 16px;
+  box-shadow: 0 12px 48px rgba(255, 77, 77, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 32px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.6s ease-in;
+}
+
+.round-info-error-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  color: #ff4d4d;
+  text-shadow: 0 0 4px rgba(255, 77, 77, 0.5);
+  margin-bottom: 16px;
+}
+
+.round-info-retry-button {
+  padding: 12px 24px;
+  background: linear-gradient(90deg, #ff4d4d, #ff00ff);
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.round-info-retry-button:hover {
+  box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+  transform: scale(1.05);
+}
+
+.round-info-retry-button:disabled {
+  background: linear-gradient(90deg, #666, #999);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .round-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .round-info-grid-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .round-info-grid-time {
+    text-align: left;
+  }
+  .round-info-grid-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .round-info-grid-title {
+    font-size: 24px;
+  }
+  .round-info-grid-time {
+    font-size: 20px;
+  }
+  .round-info-grid-item {
+    padding: 12px;
+  }
+  .round-info-grid-label {
+    font-size: 12px;
+  }
+  .round-info-grid-value {
+    font-size: 16px;
+  }
+}
 /* Responsive design */
 @media (max-width: 768px) {
   .cyberpunk-container {
@@ -564,9 +883,25 @@ svg.cyberpunk-title-icon {
     font-size: 2rem;
   }
 
-  .cyberpunk-data-panel {
-    grid-template-columns: 1fr;
-  }
+.cyberpunk-data-panel {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #00ffcc;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cyberpunk-data-item {
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  margin: 8px 0;
+  text-align: center;
+}
 
   .cyberpunk-betting-interface {
     padding: 1rem;
@@ -581,4 +916,7 @@ svg.cyberpunk-title-icon {
     flex-direction: column;
     gap: 0.5rem;
   }
+
+
 }
+
