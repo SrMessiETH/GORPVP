@@ -99,5 +99,5 @@ Open a Pull Request.
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-This README provides a clear overview of the $GOR PVP game, details its integration with the Gorbagana ecosystem, and includes step-by-step instruc
+This README provides a clear overview of the $GOR PVP game, details its integration with the Gorbagana ecosystem, and includes step-by-step instruction.
 
